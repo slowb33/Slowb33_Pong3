@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Pong_Main.gd" type="Script" id=1]
+[ext_resource path="res://Boundary.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Paddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ball.gd" type="Script" id=4]
+[ext_resource path="res://assets/Graphics/Pong_Ball_Slowb33.png" type="Texture" id=5]
+[ext_resource path="res://assets/Sounds/Pong_Brrrt_fail.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/Sounds/Pong_Bip.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/Sounds/Pong_Bup.wav" type="AudioStream" id=8]
+[ext_resource path="res://HUD.gd" type="Script" id=9]
+[ext_resource path="res://assets/Fonts/pong-numbers.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 10 )
+
+[node name="Pong_Main" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 400.0 ]
+}
+
+[node name="TopBoundary" parent="." instance=ExtResource( 2 )]
+
+[node name="LeftBoundary" parent="." instance=ExtResource( 2 )]
+position = Vector2( -7, 300 )
+rotation = 1.5708
+scale = Vector2( 0.75, 1 )
+
+[node name="RightBoundary" parent="." instance=ExtResource( 2 )]
+position = Vector2( 807, 300 )
+rotation = 1.5708
+scale = Vector2( 0.75, 1 )
+
+[node name="BottomBoundary" parent="." instance=ExtResource( 2 )]
+position = Vector2( 400, 593 )
+
+[node name="LeftPaddle" parent="." instance=ExtResource( 3 )]
+position = Vector2( 80, 300 )
+
+[node name="RightPaddle" parent="." instance=ExtResource( 3 )]
+position = Vector2( 720, 300 )
+
+[node name="Ball" type="KinematicBody2D" parent="."]
+position = Vector2( 400, 300 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource( 1 )
+
+[node name="BrrrtSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource( 6 )
+
+[node name="BipSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource( 7 )
+
+[node name="BupSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource( 8 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="ScoreLeft" type="Label" parent="HUD"]
+margin_left = 98.0
+margin_top = 40.0
+margin_right = 314.0
+margin_bottom = 112.0
+grow_horizontal = 0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="ScoreRight" type="Label" parent="HUD"]
+margin_left = 351.0
+margin_top = 40.0
+margin_right = 569.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+[connection signal="count_for_left" from="Ball" to="." method="_on_Ball_count_for_left"]
+[connection signal="count_for_right" from="Ball" to="." method="_on_Ball_count_for_right"]
