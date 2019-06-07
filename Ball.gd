@@ -3,18 +3,30 @@ extends KinematicBody2D
 signal count_for_right
 signal count_for_left
 
-var velocity := Vector2(250,150)
+export var speed = 250
 
+var velocity := Vector2(speed,randi() % 100 + 100)
 
 func _physics_process(delta):
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
-		velocity = velocity.bounce(collision_info.normal)
+		
 		var collider_name = collision_info.collider.name
 #		print(collider_name)
-		if collider_name == "LeftPaddle" or collider_name == "RightPaddle":
+		if collider_name == "LeftPaddle":
+			var diff = collision_info.collider.position.y - position.y
+			var new_velocity = Vector2(speed, - diff * 5 )
+			print("new_velocity = ", new_velocity)
+			print("speed = ", speed)
+			velocity = new_velocity
+			$BipSound.play()
+		elif collider_name == "RightPaddle":
+			var diff = collision_info.collider.position.y - position.y
+			var new_velocity = Vector2(speed * -1, - diff * 5 )
+			velocity = new_velocity
 			$BipSound.play()
 		elif collider_name == "TopBoundary" or collider_name == "BottomBoundary":
+			velocity = velocity.bounce(collision_info.normal)
 			$BupSound.play()
 		elif collider_name == "LeftBoundary":
 			emit_signal("count_for_right")
