@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pong-numbers.png_0.png-5b418ea283fea93e637fbdb1a6b1fdf4.stex"
+path="res://.import/pong-numbers_0.png-97077b1bd1e8a6d43a115e08e8433ef9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Fonts/pong-numbers.png_0.png"
-dest_files=[ "res://.import/pong-numbers.png_0.png-5b418ea283fea93e637fbdb1a6b1fdf4.stex" ]
+source_file="res://assets/Fonts/pong-numbers_0.png"
+dest_files=[ "res://.import/pong-numbers_0.png-97077b1bd1e8a6d43a115e08e8433ef9.stex" ]
 
 [params]
 

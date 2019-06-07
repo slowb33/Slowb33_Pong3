@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/Sounds/Pong_Bip.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/Sounds/Pong_Bup.wav" type="AudioStream" id=8]
 [ext_resource path="res://HUD.gd" type="Script" id=9]
-[ext_resource path="res://assets/Fonts/pong-numbers.png.fnt" type="BitmapFont" id=10]
+[ext_resource path="res://assets/Fonts/pong-numbers.fnt" type="BitmapFont" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 7 )
@@ -68,6 +68,7 @@ layer = 0
 script = ExtResource( 9 )
 
 [node name="ScoreLeft" type="Label" parent="HUD"]
+show_behind_parent = true
 margin_left = 98.0
 margin_top = 40.0
 margin_right = 314.0
@@ -79,6 +80,7 @@ align = 2
 valign = 1
 
 [node name="ScoreRight" type="Label" parent="HUD"]
+show_behind_parent = true
 margin_left = 351.0
 margin_top = 40.0
 margin_right = 569.0
