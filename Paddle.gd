@@ -8,6 +8,7 @@ func _physics_process(delta):
 	var velocity = Vector2()  # The player's movement vector.
 	
 	if Input.is_action_pressed(paddle+"_ui_down"):
+#	Input.get_action_strength()
 		velocity.y += 1
 	if Input.is_action_pressed(paddle+"_ui_up"):
 		velocity.y -= 1

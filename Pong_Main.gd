@@ -14,6 +14,7 @@ func _ready():
 	vertical_max  = int(get_viewport().size.y)
 	box_height = vertical_max/50
 	box_width = 8
+#Check if a Joystick is connected
 	Input.connect("joy_connection_changed",self,"joy_con_changed")
 
 func joy_con_changed(deviceid, isConnected):
