@@ -14,6 +14,17 @@ func _ready():
 	vertical_max  = int(get_viewport().size.y)
 	box_height = vertical_max/50
 	box_width = 8
+#Check if a Joystick is connected
+	Input.connect("joy_connection_changed",self,"joy_con_changed")
+
+func joy_con_changed(deviceid, isConnected):
+	if isConnected:
+		print("Joystick "+str(deviceid)+" connected")
+		if Input.is_joy_known(0):
+			print("Recognized controller")
+			print(Input.get_joy_name(0)+" device found")
+	else:
+		print("Controller disconnected")
 
 func _draw():
 	draw_rect(Rect2(0,0,horizontal_max,vertical_max),"000000",true)
@@ -24,6 +35,7 @@ func _draw():
 		draw_rect(linie_rect, "ffffff", true)
 
 #warning-ignore:unused_argument
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	pass
 
