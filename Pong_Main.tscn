@@ -89,5 +89,6 @@ custom_fonts/font = ExtResource( 10 )
 text = "0"
 align = 2
 valign = 1
+
 [connection signal="count_for_left" from="Ball" to="." method="_on_Ball_count_for_left"]
 [connection signal="count_for_right" from="Ball" to="." method="_on_Ball_count_for_right"]
